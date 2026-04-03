@@ -23,5 +23,4 @@ if [ -n "$pet_pane_percentage" ]; then
 elif [ -n "$pet_pane_size" ]; then
     options="$options -l $pet_pane_size"
 fi
-
-tmux split-window $options tmux\ send-keys\ \-t\ $1\ \"\$\($pet_path\ search\)\"
+tmux split-window $options "$pet_path search | tmux load-buffer - && tmux paste-buffer -t $1"

@@ -10,5 +10,4 @@ if ! which $pet_path > /dev/null 2>&1; then
     tmux display-message "$pet_path is not found."
     return
 fi
-
-tmux new-window tmux\ send-keys\ \-t\ $1\ \"\$\($pet_path\ search\)\"
+tmux new-window "$pet_path search | tmux load-buffer - && tmux paste-buffer -t $1"
